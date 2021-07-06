@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
-class User extends Model
+class Wallet extends Model
 {
     use HasFactory, SoftDeletes;
 }

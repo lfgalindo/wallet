@@ -3,26 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\Users\Contracts\UserService as UserServiceContract;
+use App\Services\Users\UserService;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
+        $this->app->bind(UserServiceContract::class, UserService::class);
     }
 }
