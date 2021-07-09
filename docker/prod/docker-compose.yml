@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+    wallet-db:
+      image: mysql
+      container_name: wallet-db
+      restart: always
+      ports:
+        - 3306:3306
+      environment:
+        MYSQL_DATABASE: wallet
+        MYSQL_USER: wallet
+        MYSQL_PASSWORD: paj45TFcli
+        MYSQL_ROOT_PASSWORD: paj45TFcli
+
+    wallet-php:
+        image: wallet-php
+        container_name: wallet-php
+        build:
+            context: ../../
+            dockerfile: docker/php/Dockerfile
+        environment:
+            - APP_ENV=production
+        depends_on:
+            - wallet-db
+        restart: unless-stopped
+
+#    walllet-queue:
+#        image: wallet-queue
+#        container_name: wallet-queue
+#        build:
+#            context: ../../
+#            dockerfile: docker/php/Dockerfile
+#        command: /bin/sh -c "/usr/bin/supervisord -c /etc/supervisor/conf.d/laravel-worker.conf"
+#        environment:
+#            - APP_ENV=production
+#        depends_on:
+#            - wallet-db
+#        restart: unless-stopped
+
+    wallet-nginx:
+        image: wallet-nginx
+        container_name: wallet-nginx
+        build:
+            context: ../../
+            dockerfile: docker/nginx/Dockerfile
+        environment:
+            - APP_ENV=production
+        depends_on:
+            - wallet-php
+        ports:
+            - 8000:80
+        restart: unless-stopped

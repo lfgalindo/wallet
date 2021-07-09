@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\{
     TransactionRepository as TransactionRepositoryContract,
     UserRepository as UserRepositoryContract,
-    WalletRepository as WalletRepositoryContract,
+    WalletRepository as WalletRepositoryContract
 };
 use App\Repositories\Eloquent\{
     TransactionRepository,

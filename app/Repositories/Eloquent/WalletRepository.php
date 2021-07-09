@@ -37,7 +37,7 @@ class WalletRepository implements WalletRepositoryContract
     public function create(int $userId): Wallet
     {
         $this->walletModel->user_id = $userId;
-        $this->walletModel->balance = 0;
+        $this->walletModel->balance = 100;
         $this->walletModel->save();
 
         return $this->walletModel;
