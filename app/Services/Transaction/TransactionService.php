@@ -41,7 +41,7 @@ class TransactionService implements TransactionServiceContract
         $payer = $this->userRepository->getUserByIdWithWallet($dataTransaction['payer']);
 
         if (!$payer->canSendMoney()) {
-            throw new Exception('Você não pode enviar dinheiro!', 401);
+            throw new Exception('Você não pode enviar dinheiro!', 400);
         }
 
         $payee = $this->userRepository->getUserByIdWithWallet($dataTransaction['payee']);
@@ -73,14 +73,16 @@ class TransactionService implements TransactionServiceContract
 
             return [
                 'resource' => $this->transactionRepository->endWithSuccess($transaction),
-                'message' => 'Dinheiro enviado com sucesso!'
+                'message' => 'Dinheiro enviado com sucesso!',
+                'code' => 201
             ];
         } catch (Throwable $exception) {
             DB::rollback();
 
             return [
                 'resource' => $this->transactionRepository->endWithError($transaction),
-                'message' => $exception->getMessage()
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode()
             ];
         }
     }

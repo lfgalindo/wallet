@@ -23,7 +23,7 @@ class TransactionController extends Controller
 
             return response()->json([
                 'resource' => $transaction
-            ], 201);
+            ], $transaction['code']);
         } catch (Exception $exception) {
             return response()->json($exception->getMessage(), $exception->getCode());
         }
