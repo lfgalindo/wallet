@@ -36,7 +36,17 @@ docker exec -ti api-sms php artisan migrate
 
 ### Modelagem do banco de dados
 
+<img src="https://github.com/lfgalindo/wallet/blob/488e19290945abd88122223b27985a2fda1cb767/docs/mer.png" />
+
 ### Endpoints
+
+A documentação dos endpoints foi criada utilizando a ferramenta Postman. [Clique aqui](https://documenter.getpostman.com/view/13008741/Tzm6mwHD) para ver a documentação completa.
+
+#### ```POST``` **/api/user**
+Realiza o cadastro de um novo usuário.
+
+#### ```POST``` **/api/transaction**
+Realiza uma transferência de dinheiro entre usuários.
 
 ### Autor
 [Luiz Felipe M. Galindo](https://github.com/lfgalindo) <<lfgalindo@live.com>>
