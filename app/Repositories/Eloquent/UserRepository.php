@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\User;
+use App\Models\Contracts\User;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Contracts\UserRepository as UserRepositoryContract;
 
@@ -15,7 +15,12 @@ class UserRepository implements UserRepositoryContract
         $this->userModel = $userModel;
     }
 
-    public function create(array $dataUser)
+    public function getUserByIdWithWallet(int $userId): User
+    {
+        return $this->userModel->with('wallet')->findOrFail($userId);
+    }
+
+    public function create(array $dataUser): User
     {
         $this->userModel->name = $dataUser['name'];
         $this->userModel->cpf_cnpj = $dataUser['cpf_cnpj'];

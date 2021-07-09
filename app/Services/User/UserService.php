@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services\Users;
+namespace App\Services\User;
 
-use App\Services\Users\Contracts\UserService as UserServiceContract;
+use App\Models\Contracts\User;
+use App\Services\User\Contracts\UserService as UserServiceContract;
 use App\Repositories\Contracts\{UserRepository, WalletRepository};
 
 class UserService implements UserServiceContract 
@@ -18,7 +19,7 @@ class UserService implements UserServiceContract
         $this->walletRepository = $walletRepository;
     }
 
-    public function createUser(array $dataUser)
+    public function createUser(array $dataUser): User
     {
         $dataUser['cpf_cnpj'] = isset($dataUser['cpf']) ? $dataUser['cpf'] : $dataUser['cnpj'];
 

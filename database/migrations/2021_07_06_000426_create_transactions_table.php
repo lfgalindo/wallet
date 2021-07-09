@@ -12,7 +12,8 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignId('payer_id');
             $table->foreignId('payee_id');
-            $table->double('value');
+            $table->decimal('value', 14, 2);
+            $table->enum('status', ['PROCESSING', 'SUCCESS', 'ERROR']);
             $table->timestamps();
             
             $table->foreign('payer_id')->references('id')->on('users');

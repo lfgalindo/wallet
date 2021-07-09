@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Http\Requests\UserStoreRequest;
-use App\Services\Users\Contracts\UserService;
+use App\Services\User\Contracts\UserService;
 
 class UserController extends Controller
 {

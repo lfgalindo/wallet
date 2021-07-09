@@ -2,12 +2,27 @@
 
 namespace App\Models;
 
+use App\Models\Contracts\Transaction as TransactionContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Transaction extends Model implements TransactionContract
 {
     use HasFactory;
+
+    protected $attributes = [
+        'status' => 'PROCESSING'
+    ];
+
+    public function setError(): void
+    {
+        $this->status = 'ERROR';
+    }
+
+    public function setSuccess(): void
+    {
+        $this->status = 'SUCCESS';
+    }
     
     public function payer()
     {
