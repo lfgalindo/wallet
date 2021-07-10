@@ -18,7 +18,7 @@ cd wallet && cp .env.example .env
 # Crie os containers
 docker-compose -f docker/prod/docker-compose.yml up --build -d
 
-# Crie as tabelas do banco de dados
+# Aguarde a inicialização completa dos containers e crie as tabelas do banco de dados
 docker exec -ti wallet-api php artisan migrate
 
 # Concluído!!!
