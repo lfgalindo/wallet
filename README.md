@@ -1,6 +1,6 @@
 ## Wallet
 
-Um jeito facil de enviar dinheiro para seu amigos.
+Um jeito fácil de enviar dinheiro para seus amigos.
 
 ### Requisitos
 - **[Docker](https://docker.com/)** instalado e executando.
@@ -15,15 +15,11 @@ git clone https://github.com/lfgalindo/wallet
 # Entre na pasta do projeto e crie o arquivo *.env*
 cd wallet && cp .env.example .env
    
-# Se alterar as configurações de acesso ao banco de dados no arquivo *.env*,
-# você precisará alterar também o arquivo a seguir
-vim docker/prod/docker-compose.yml
-
 # Crie os containers
 docker-compose -f docker/prod/docker-compose.yml up --build -d
 
 # Crie as tabelas do banco de dados
-docker exec -ti api-sms php artisan migrate
+docker exec -ti wallet-api php artisan migrate
 
 # Concluído!!!
 ```
@@ -31,7 +27,7 @@ docker exec -ti api-sms php artisan migrate
 ### Containers
 - wallet-api ```php:7.4.21-fpm-alpine3.13```
 - wallet-queue ```php:7.4.21-fpm-alpine3.13```
-- wallet-nginx ```php:7.4.21-fpm-alpine3.13```
+- wallet-nginx ```nginx:1.20.1-alpine```
 - wallet-db ```mysql```
 
 ### Modelagem do banco de dados

@@ -4,8 +4,6 @@ set -e
 
 cd /var/www
 
-mv /var/www/.env /var/www/.env
-
 composer install --optimize-autoloader --no-dev
 
 php artisan key:generate
